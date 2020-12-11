@@ -1,4 +1,4 @@
-//apontamento do model que criamos para as Tarefas
+
 const tarefas = require('../models/tarefas');
 const SECRET = process.env.SECRET;
 const jwt = require('jsonwebtoken');
@@ -28,8 +28,7 @@ const getAll = (req, res) => {
 
 const getById = (req, res) => {
   const id = req.params.id;
-  //Find sempre retorna uma lista
-  //FindOne retorna um unico documento
+ 
   tarefas.find({ id }, function(err, tarefas){
     if(err) {
       res.status(500).send({ message: err.message })
@@ -56,8 +55,7 @@ const postTarefa = (req, res) => {
 const deleteTarefa = (req, res) => {
   const id = req.params.id;
 
-  //deleteMany remove mais de um registro
-  //deleteOne remove apenas um registro
+  
   tarefas.find({ id }, function(err, tarefa){
     if(tarefa.length > 0){
       tarefas.deleteMany({ id }, function(err){
@@ -100,10 +98,7 @@ const putTarefa = (req, res) => {
 
   tarefas.find({ id }, function(err, tarefa){
     if(tarefa.length> 0){
-      //faz o update apenas para quem respeitar o id passado no parametro
-      // set são os valores que serão atualizados
-      //UpdateMany atualiza vários registros de uma unica vez
-      //UpdateOne atualiza um único registro por vez
+   
 
       tarefas.updateMany({ id }, { $set : req.body }, function (err) {
         if (err) {
